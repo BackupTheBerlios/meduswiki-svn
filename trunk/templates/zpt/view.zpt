@@ -69,6 +69,14 @@
               </table>
               <p tal:replace="structure content">Content</p>
               <b tal:condition="not:content">Topic has no content</b>
+
+              <table height="10" border="0" cellspacing="0" cellpadding="0" width="100%">
+               <tr>
+	         <td align="right"><a tal:attributes="href python: '?job=history&wn='+str(title)">History</a>
+	         </td>
+               </tr>
+              </table>
+
   <hr />
 
   </div>
