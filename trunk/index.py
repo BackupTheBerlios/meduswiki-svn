@@ -31,7 +31,7 @@ mode = 'xtm'
 cfg = {} # configuration dict
 cfg['encoding'] = 'utf-8' # 'iso-8859-13'
 
-svnrepos = 'file:///home/kosmos/svn/trunk'
+svnrepos = 'svn://svn.berlios.de/meduswiki/trunk'
 
 cfg['version'] = os.popen("svnversion . %s" % svnrepos).read()
 cfg['link'] = 'http://meduswiki.berlios.de/'
