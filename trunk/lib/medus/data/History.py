@@ -2,6 +2,7 @@
 # this MedusWiki version history system
 #from os import listdir
 from os.path import exists, join, getmtime
+from os import environ
 import tarlib
 import tar
 
@@ -18,15 +19,16 @@ class History:
         filepath = join(self.dir, filename)
         copy = open(filepath).read()
         content = []
+        name = str(environ.get('REMOTE_ADDR'))
         
         if exists(archive):
             fp = open(archive, 'r')
             tara = tarlib.TAR(fp, cached=1)
-            content = [tar.TarEntry(entry.name, entry.getdata(), mtime=entry.mtime) for entry in tara] # save old data
+            content = [tar.TarEntry(entry.name, entry.getdata(), mtime=entry.mtime, uname=entry.uname) for entry in tara] # save old data
             fp.close()
 
         newversion = '%s.%s' % (filename, len(self.listVersions(filename)))
-        content.append(tar.TarEntry(newversion, copy, mtime=getmtime(filepath))) # append new data
+        content.append(tar.TarEntry(newversion, copy, mtime=getmtime(filepath), uname=name)) # append new data
         tarstr = tar.tarit(content)
         open(archive, 'w').write(tarstr)
 
@@ -34,19 +36,33 @@ class History:
 
 
     def listVersions(self, filename):
-        """return sorted list of saved file versions"""
+        """return sorted dict of saved file versions: file:tarlib.TarEntry"""
         archive = join(self.dir, '%s.tar' % filename)
-        filelist = []
+        filedict = {}
         
         if exists(archive):
             fp = open(archive, 'r')
-            tara = tarlib.TAR(fp, cached=1)
-            filelist = tara.keys()
+            filedict = dict(tarlib.TAR(fp, cached=1).items())
             fp.close()
 
 #        filelist = [file for file in listdir(self.dir) if file.startswith("%s." % filename)]
 #        filelist.sort(cmp_fileversions) #tarlib returns sorted keys
-        return filelist
+        return filedict
+
+
+    def getdata(self, filename, version):
+        """return file.version content"""
+        archive = join(self.dir, '%s.tar' % filename)
+        version = '%s.%s' % (filename, version)
+        data = ''
+        
+        if exists(archive):
+            fp = open(archive, 'r')
+            tara = tarlib.TAR(fp, cached=1)
+            data = tara.getit(version).getdata()
+            fp.close()
+
+        return data
             
     
 def cmp_fileversions(a, b):

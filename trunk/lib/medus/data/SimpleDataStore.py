@@ -36,17 +36,19 @@ class SimpleDataStore:
     def write(self, id, content):
         """(id, content) write content to id:file"""
 
-        if self.exists(id): # backup old version
-            self.history.save(id)
+        #if self.exists(id): # backup old version
+        #    self.history.save(id)
         
         outfile = open(os.path.join(self.content_path, id), "w")
         outfile.write(content)
         outfile.close()
 
+        self.history.save(id) # backup data
+        
     def remove(self, id):
         """Delete file(id) from data storage"""
         if self.exists(id):
-            self.history.save(id) # backup removed version
+            #self.history.save(id) # backup removed version
             os.remove(os.path.join(self.content_path, id))
 
     def listdata(self):

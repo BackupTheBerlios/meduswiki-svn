@@ -327,6 +327,13 @@ class TAR:
         except KeyError:
             return default
 
+    #by vosvos
+    def getit(self, key):
+        """
+        Returns the last entry stored under 'key' or throws KeyError.
+        """
+        return self.__getkey(key)
+
     def has_key(self, key):
         """
         Returns 1, if 'key' exits in archive, 0 otherwise.

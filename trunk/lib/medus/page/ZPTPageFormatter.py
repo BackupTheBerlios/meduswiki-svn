@@ -9,6 +9,8 @@ from simpletal import simpleTAL, simpleTALES, simpleTALUtils
 import os.path
 from SimplePageFormatter import SimplePageFormatter
 from medus.cfg import Config
+import time
+from medus.data.History import cmp_fileversions
  
 class ZPTPageFormatter(SimplePageFormatter):
     """ ZPT page formatting
@@ -87,4 +89,21 @@ class ZPTPageFormatter(SimplePageFormatter):
             context.addGlobal ("query", query.decode(self.encoding))
             context.addGlobal ("searchresults", self.datastore.search(query))                    
 
+        return context
+
+    def _context_history(self, context, fields):
+        """add objects to the context for zpt template history.zpt"""
+        wn = fields['wn']
+        context.addGlobal ("title", wn)
+
+        history = Config.get('History')
+
+        items = history.listVersions(wn).items()
+        def sortitems(a, b):
+            return -cmp_fileversions(a[0], b[0])
+        items.sort(sortitems)
+
+        context.addGlobal("check", (len(items) > 1 and 1 or 0))
+        context.addGlobal ("revisions", items)
+        context.addGlobal ("time", time)
         return context
