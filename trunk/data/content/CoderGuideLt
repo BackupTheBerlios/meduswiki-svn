@@ -18,7 +18,7 @@
  index.py
 ----
 !! Klasių diagrama
-[http://192.168.0.1/~kosmos/medus/data/images/class.png|Klasių diagrama ir klasės naudojamas skirtinguose rėžimuose]
+[http://uosis.mif.vu.lt/%7Eedsc1109/cgi-bin/medus/data/images/class.png|Klasių diagrama ir klasės naudojamas skirtinguose rėžimuose]
 ----
 !! Rėžimai
 Rėžimus galima nustatyti ''index.py'' failę. Tam atitinkamai reikia nustatyti: 

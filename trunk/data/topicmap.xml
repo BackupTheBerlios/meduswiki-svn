@@ -15,24 +15,19 @@
 	<topic id="MedusWiki"/>
 	<topic id="PartOf"/>
 	<topic id="ContentCreation"/>
-	<topic id="type">
-		<instanceOf>
-			<topicRef xlink:href="#builtIn"/>
-		</instanceOf>
-	</topic>
 	<topic id="oppositeRole">
 		<instanceOf>
 			<topicRef xlink:href="#builtIn"/>
 		</instanceOf>
 	</topic>
 	<topic id="TopicMapperGuideLt"/>
-	<topic id="ConsistsOf"/>
 	<topic id="SandBox"/>
 	<topic id="role">
 		<instanceOf>
 			<topicRef xlink:href="#builtIn"/>
 		</instanceOf>
 	</topic>
+	<topic id="HomePage"/>
 	<topic id="Translation"/>
 	<topic id="WYAWWWCLt"/>
 	<topic id="ContentCreationLt"/>
@@ -41,6 +36,7 @@
 	<topic id="DesignerGuideLt"/>
 	<topic id="Installation"/>
 	<topic id="InstallationLt"/>
+	<topic id="AssociationsCreationLt"/>
 	<topic id="builtIn">
 		<instanceOf>
 			<topicRef xlink:href="#builtIn"/>
@@ -50,14 +46,18 @@
 	<topic id="TODO"/>
 	<topic id="CoderGuideLt"/>
 	<topic id="TopicMapperGuide"/>
-	<topic id="HomePage"/>
+	<topic id="type">
+		<instanceOf>
+			<topicRef xlink:href="#builtIn"/>
+		</instanceOf>
+	</topic>
 	<topic id="AssociationsCreation"/>
-	<topic id="AssociationsCreationLt"/>
-	<topic id="NextPage"/>
+	<topic id="ConsistsOf"/>
+	<topic id="PreviousPage"/>
 	<topic id="DesignerGuide"/>
 	<topic id="UserGuide"/>
 	<topic id="ContentFiltering"/>
-	<topic id="PreviousPage"/>
+	<topic id="NextPage"/>
 	<association id="24">
 		<member>
 			<roleSpec>
@@ -342,18 +342,18 @@
 			<topicRef xlink:href="#Translation"/>
 		</member>
 	</association>
-	<association id="38">
+	<association id="12">
 		<member>
 			<roleSpec>
-				<topicRef xlink:href="#relatedTo"/>
+				<topicRef xlink:href="#oppositeRole"/>
 			</roleSpec>
-			<topicRef xlink:href="#DONE"/>
+			<topicRef xlink:href="#PartOf"/>
 		</member>
 		<member>
 			<roleSpec>
-				<topicRef xlink:href="#relatedTo"/>
+				<topicRef xlink:href="#oppositeRole"/>
 			</roleSpec>
-			<topicRef xlink:href="#TODO"/>
+			<topicRef xlink:href="#ConsistsOf"/>
 		</member>
 	</association>
 	<association id="11">
@@ -398,18 +398,18 @@
 			<topicRef xlink:href="#Installation"/>
 		</member>
 	</association>
-	<association id="12">
+	<association id="38">
 		<member>
 			<roleSpec>
-				<topicRef xlink:href="#oppositeRole"/>
+				<topicRef xlink:href="#relatedTo"/>
 			</roleSpec>
-			<topicRef xlink:href="#PartOf"/>
+			<topicRef xlink:href="#DONE"/>
 		</member>
 		<member>
 			<roleSpec>
-				<topicRef xlink:href="#oppositeRole"/>
+				<topicRef xlink:href="#relatedTo"/>
 			</roleSpec>
-			<topicRef xlink:href="#ConsistsOf"/>
+			<topicRef xlink:href="#TODO"/>
 		</member>
 	</association>
 	<association id="15">

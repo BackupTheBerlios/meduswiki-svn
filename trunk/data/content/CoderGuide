@@ -19,7 +19,7 @@
 
 ----
 !! Class diagram
-[http://192.168.0.1/~kosmos/medus/data/images/class.png|Class diagram and classes that are used in different modes]
+[http://uosis.mif.vu.lt/%7Eedsc1109/cgi-bin/medus/data/images/class.png|Class diagram and classes that are used in different modes]
 ----
 !! Modes
 You can change modes by modifying ''index.py'' file. Appropriate name must be set: mode='simple', mode='zpt' or mode='xtm'.

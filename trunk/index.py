@@ -105,7 +105,11 @@ if __name__=="__main__":
     # Leave out the "keep_blank_values" bit to filter out empty fields
     cgifields = cgi.FieldStorage(keep_blank_values=1)
     fields = {}
-    for key in cgifields.keys():
-          fields[key] = cgifields[key].value
 
+    for key in cgifields.keys():
+        if type(cgifields[key]) == type([]):
+            fields[key] = [i.value for i in cgifields[key]]
+        else:
+            fields[key] = cgifields[key].value
+                                         
     main(fields)
