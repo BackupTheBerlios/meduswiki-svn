@@ -1,0 +1,19 @@
+You could filter pages in MedusWiki by describing its role and topic that it is associated with. There is ''Filter'' form in search window:
+
+{data/images/filter1.png|filter form}
+pic. 1
+
+You could filter pages by role:
+
+{data/images/filter2.png|filtering by role}
+pic. 2 
+
+You could filter pages by topic that it is associated with:
+
+{data/images/filter3.png|filter form}
+pic. 3 
+
+You could filter pages by role and topic of the association: 
+
+{data/images/filter4.png|filter form}
+pic. 4 

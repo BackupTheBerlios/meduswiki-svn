@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title tal:content="title">WikiName</title>
+      <link rel="stylesheet" tal:attributes="href cfg/css" type="text/css" title="vosvos" />
+   </head>
+   <body>
+
+<div class="container">
+
+  <div id="topmenu">
+     <div id="toplinks" align="center">
+
+               <a href="?job=view&wn=HomePage">HomePage</a> |
+               <a href="?TODO">TODO</a> |
+               <a href="?job=toc">TitleIndex</a> |
+               <a href="?job=changes">RecentChanges</a> |
+               <a href="?job=search">Search</a>
+     </div>
+  </div>
+
+  <div id="right">
+    <div id="rightmenubody" align="center">
+
+      <div tal:condition="associations" id="rightmenu" class="rightlinks" align="left">
+
+              <table border="0" cellspacing="0" cellpadding="0">
+            
+                 <span tal:repeat="association associations" tal:omit-tag="">
+
+                  <span tal:define="global oldrole role; global role association/1" 
+                     tal:condition="python: role != oldrole"
+                     tal:omit-tag="">
+                     <tr>
+                       <td class="role"><a tal:attributes="href python: '?' + role" tal:content="role">rolename</a></td>
+                     </tr>
+                  </span>
+
+                  <tr>
+                    <td tal:define="rtopic association/2">
+                       <a tal:attributes="href python: '?' + rtopic" tal:content="rtopic">relatedtopics</a>
+                    </td>
+                  </tr>
+                 </span>
+
+              </table>
+
+      </div>
+    
+
+    </div>
+    <div id="logo" align="center">
+  <a tal:attributes="href cfg/link">
+  <img tal:attributes="src cfg/logo" border="0" alt="logo" />
+  </a>
+       <b style="color:#4D5889" tal:content="cfg/version">0.0</b>
+    </div>
+  </div>
+
+
+  <div id="contentbody">
+  <div id="content">
+              <table height="10" border="0" cellspacing="0" cellpadding="0" width="100%">
+               <tr><td><h1 tal:content="title">title</h1></td>
+                   <td align="right">
+                   <a tal:attributes="href python:'?job=edit&wn='+str(title)">Edit</a>
+                   &middot; 
+                   <a tal:attributes="href python:'?job=print&wn='+str(title)">Print</a></td>
+               </tr>
+              </table>
+              <p tal:replace="structure content">Content</p>
+              <b tal:condition="not:content">Topic has no content</b>
+  <hr />
+  
+  </div>
+  </div>
+</div>
+
+   </body>
+</html>

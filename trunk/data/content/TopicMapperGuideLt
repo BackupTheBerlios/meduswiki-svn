@@ -1,0 +1,143 @@
+Naudoti temų žemėlapius turinio valdymui, man kilo perskaičius Lars Marius Garshol straipsnį [http://www.ontopia.net/topicmaps/materials/itms.html|Topic maps in content management]. 
+
+Visos temos ir asociacijos saugomos viename faile:
+ data/topicmap.xml
+MedusWiki sistemoje, temų žemėlapių išraiškingumas naudojamas labai minimaliai ir gal net ne pačiu tinkamiausiu būdu. Stengtasi, kad sistema neprarastų geriausių Wiki savybių ir ja naudotis būtų paprasta. Tai įtakojo ir sprendimus del XTM panaudojimo. Galbūt ateityje reikės pasirinkti kitokį metaduomenų saugojimo būdą, o temų žemėlapius palikti kaip vieną iš galimų metaduomenų eksportavimo formatų.
+
+Tam kad susieti Tema su wiki puslapių naudojamas temos atributas ''id''.
+ <topic id="WikiName"/>
+Pagal turimą ''id'' failų saugykloje gaunamas failas turintis tokį patį pavadinimą. Jeigu tai būtų TVS, o ne wiki sistema manau pasielgčiau kitaip ir tam naudočiau XTM ''occurrence'' žymę:
+ <topic id="randomId">
+    <occurrence>
+        <resourceRef xlink:href="file:///path/WikiName"/>
+    </occurrence>
+ </topic>
+Tai leistų naudoti įvariais duomenų saugyklas ir jas pasiekiti skirtingais protokolais.
+
+Sąryšio tarp dviejų temų pavyzdys:
+ <association id="110">
+    <member>
+        <roleSpec><topicRef xlink:href="#PartOf"/></roleSpec>
+        <topicRef xlink:href="#MedusInstallLT"/>
+    </member>
+    <member>
+        <roleSpec><topicRef xlink:href="#ConsistsOf"/></roleSpec>
+        <topicRef xlink:href="#MedusGuide"/>
+    </member>
+ </association>
+Norint parodyti, kad viena tema yra kitos temos egzempliorius yra sukūriama asociacija ''type-typeOf'':
+ <association id="111">
+    <member>
+        <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+        <topicRef xlink:href="#AuthorOf"/>
+    </member>
+    <member>
+        <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+        <topicRef xlink:href="#role"/>
+    </member>
+ </association>
+Atrodytų būtų teisingiau tam naudoti XTM ''instanceOf'' žymę:
+ <topic id="AuthorOf">
+    <instanceOf><topicRef xlink:href="#role"/></instanceOf>
+ </topic>
+Kodėl ne? Pagrindinė to priežastis yra noras padaryti, kad wiki puslapio padėtį sistemoje nusakytu tik jo turimi sąryšiai(asociacijos) su kitomis temomis. To pasekoje gaunamas vieningas ir vienintelis interfeisas darbui su wiki puslapio metaduomenimis (nereikia kurti interfeiso, kur būtų parenkamas wiki puslapio tipas).
+
+Temų žemėlapyje iš pat pradžių sukuriamos žemiau pateiktos temos ir asociacijos. Vienintelis skirtumas, skiriantis jas nuo vartotojo kuriamų temų ir sąryšių, yra tai, kad visos jos pažymėtos ''builtIn'' egzemplioriais.
+ <topicMap>
+   <topic id="builtIn">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="role">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="type">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="typeOf">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="oppositeRole">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="relatedTo">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <association id="1">
+       <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#type"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#typeOf"/>
+       </member>
+   </association>
+
+   <association id="2">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#type"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="3">
+       <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+       <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#typeOf"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="4">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="5">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+   </association>
+
+   <association id="6">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#relatedTo"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+ </topicMap>
+Naudojantis šiomis temomos ir sąryšiais, vartotojas gali toliau plėsti savo sistemą (kurti naujus sąryšius ir naujus sąryšių tipus).

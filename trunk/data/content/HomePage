@@ -1,0 +1,25 @@
+----
+!! What is MedusWiki?
+MedusWiki is a Python Wiki engine intended to be used as a personal knowledge management system. It uses Topic Maps (XTM) to store associations between wiki pages. Old file-and-folder-oriented mentality is discarded and content objects are located using their metadata only. Personally, I am using it to store bookmarks, manage todo list, write notes and documentation.
+
+!!! More details, please!
+* CGI program;
+* independent of platform;
+* data storage - file system;
+* metadata storage - ''topic map''  ([http://www.topicmaps.org/xtm/1.0/|XTM]);
+* ZPT (TAL) templates.
+[?WYAWWWC|Why yet another Wiki Wiki Web clone?] ([?WYAWWWCLt|lt])
+----
+!! Download
+You can download the latest MedusWiki from:
+http://developer.berlios.de/projects/meduswiki/
+----
+!! Demo
+Project documentation is written in MedusWiki.
+----
+!! Documentation
+[?UserGuide|User Guide] ([?UserGuideLt|lt])
+[?DesignerGuide|Designer Guide] ([?DesignerGuideLt|lt])
+[?TopicMapperGuide|TopicMapper Guide] ([?TopicMapperGuideLt|lt])
+[?CoderGuide|Coder Guide] ([?CoderGuideLt|lt])
+

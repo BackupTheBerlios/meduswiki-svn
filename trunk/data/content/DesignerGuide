@@ -1,0 +1,24 @@
+You can change MedusWiki page layout in two ways. First is to modify CSS file and second is to modify or create new templates.
+----
+!! Changing CSS file 
+* open ''index.py'' file in text editor.
+* find string:
+ cfg['css'] = "http://meduswiki.berlios.de/meduswiki.css"
+* enter new link.
+Copy of meduswiki css file is placed at:
+ templates/meduswiki.css
+----
+!! Modifying TAL templates
+MedusWiki uses TAL template language, witch originated from [http://www.zope.org|Zope] (ZPT). If you want to learn more about TAL, read [http://dev.zope.org/Wikis/DevSite/Projects/ZPT/SimpleTutorial|introductory guide to Zope Page Templates]
+
+By default MedusWiki is in ''xtm'' mode (uses ''topic maps''). In this case, these templates are used:
+ templates/xtm/
+             changes.zpt (RecentChanges page)
+             edit.zpt (Edit page)
+             print.zpt (Print page)
+             search.zpt (Search page)
+             toc.zpt (TitleIndex page)
+             view.zpt (Wiki page)
+In case then MedusWiki is in ''zpt'' mode, templates located in this directory are used:
+ templates/zpt/
+(Read [?CoderGuide|Coder Guide]) to get more information about modes.

@@ -1,0 +1,27 @@
+MedusWiki is independent of OS. All you need is Python (2.2 or higher) interpretter. You could download it from python [http://www.python.org|website].
+
+You could download MedusWiki from
+http://developer.berlios.de/projects/meduswiki/
+----
+!!! Installation (for whose who already have Web Server)
+MedusWiki is CGI program, so you can run it on any web server that supports CGI and has python interpreter.
+
+Set ''read/write'' premissions for /data directory (unix: chmod -R 777 data). It's recommended to move /data directory to some place that is not webvisible. This directory must be written in the ''index.py'' file:
+ cfg['data_path'] = '/path/to/data'
+Set ''execute'' permission for the main file. (unix: chmod 755 index.py).
+
+In case your Web Server requires specific extension for cgi scripts, rename  ''index.py'' to ''index.cgi'' or some other.
+----
+!!! Installation (for whose who don't have Web Server) 
+MedusWiki comes with simple python httpcgi server. It's enough to run MedusWiki.
+----
+'''Windows''':
+* Extract MedusWiki archive into appropriate directory.
+* Run httpcgi server: "python httpcgi.py"
+* Launch url: "http://localhost:8000/index.py"
+----
+'''Linux''':
+* Extract MedusWiki archive into appropriate directory.
+* Set ''read/write'' premissions for /data directory (unix: chmod -R 777 data).
+* Run httpcgi server: "python httpcgi.py &"
+* Launch url: "http://localhost:8000/index.py"

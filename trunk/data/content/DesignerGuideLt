@@ -1,0 +1,25 @@
+Keisti MedusWiki išvaizdą galima modifikuojant CSS failą arba redaguojant TAL templeitus.
+----
+!! CSS Failo Keitimas
+* teksto redaktoriumi atsidarykite ''index.py'' failą.
+* suraskite eilutę:
+ cfg['css'] = "http://meduswiki.berlios.de/meduswiki.css"
+* pakeiskite nuorodą nauju CSS failu.
+MedusWiki css failo kopija yra padėta:
+ templates/meduswiki.css
+----
+!! TAL templeitų redagavimas
+Medus Wiki naudoja TAL templeitų kalbą kuri buvo sukurta [http://www.zope.org|Zope] karkasui. Norint išmokti TAL pasiskaitykite: [http://dev.zope.org/Wikis/DevSite/Projects/ZPT/SimpleTutorial|introductory guide to Zope Page Templates]
+
+Pagal nutylėjimą MedusWiki yra XTM rėžime (naudoja temų žemėlapius).
+Tokiu atveju yra naudojami šie templeitai:
+ templates/xtm/
+             changes.zpt (RecentChanges puslapiui)
+             edit.zpt (Bet kurio wiki puslapio "Edit" langas)
+             print.zpt (Bet kurio wiki puslapio "Print" langas)
+             search.zpt (Search puslapiui)
+             toc.zpt (TitleIndex puslapiui)
+             view.zpt (Bet kurio wiki puslapio atvaizdavimo langas)
+Jeigu MedusWiki perjungtas į ZPT rėžimą, naudojami templeitai esantys kataloge:
+ templates/zpt/
+(Daugiau apie rėžimus galite sužinoti [?CoderGuideLT|Programuotojo Vadove])

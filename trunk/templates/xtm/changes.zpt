@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>RecentChanges</title
+      <link rel="stylesheet" tal:attributes="href cfg/css" type="text/css" title="vosvos"/>
+   </head>
+   <body>
+   <div class="container">
+
+  <div id="topmenu">
+     <div id="toplinks" align="center">
+               <a href="?job=view&wn=HomePage">HomePage</a> |
+               <a href="?TODO">TODO</a> |
+               <a href="?job=toc">TitleIndex</a> |
+               <a href="?job=changes">RecentChanges</a> |
+               <a href="?job=search">Search</a>
+     </div>
+  </div>
+
+  <div id="right">
+    <div id="rightmenubody" align="center">
+
+    </div>
+    <div id="logo">
+  <a tal:attributes="href cfg/link">
+  <img tal:attributes="src cfg/logo" border="0" alt="logo" />
+  </a>
+       <b style="color:#4D5889" tal:content="cfg/version">0.0</b>
+    </div>
+  </div>
+
+  <div id="contentbody">
+  <div id="content">
+    <h1>RecentChanges</h1>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+        
+	<span tal:repeat="fileinfo changes" tal:omit-tag="">
+           <tr tal:define="global olddate date; global date fileinfo/1"
+               tal:condition="python: str(date) != str(olddate)">
+             <td height="30" colspan="2" tal:content="fileinfo/1">date</td>
+           </tr>
+           <tr>
+             <td tal:define="filename fileinfo/0" bgcolor="#F5F5F4">
+               <a tal:attributes="href python:'?'+ str(filename)" tal:content="filename">file name</a>
+             </td>
+             <td bgcolor="#F5F5F4" tal:content="fileinfo/2">file modification time</td>
+           </tr>
+        </span> 
+
+        </table>
+    <hr />
+   </div>
+   </div>
+
+   </div>
+   </body>
+</html>

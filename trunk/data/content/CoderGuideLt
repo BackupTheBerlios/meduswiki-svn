@@ -1,0 +1,61 @@
+----
+!! Kodo direktorijų struktūra
+ lib/medus/
+           cfg.py
+           content/
+                  WikiFormatter.py
+           data/
+                  SimpleDataStore.py
+           form/
+                  SimpleFormProcessor.py
+                  XTMFormProcessor.py
+           page/
+                  SimplePageFormatter.py
+                  ZPTPageFormatter.py
+                  XTMPageFormatter.py
+ lib/simpletal/
+ lib/xtm/
+ index.py
+----
+!! Klasių diagrama
+[http://192.168.0.1/~kosmos/medus/data/images/class.png|Klasių diagrama ir klasės naudojamas skirtinguose rėžimuose]
+----
+!! Rėžimai
+Rėžimus galima nustatyti ''index.py'' failę. Tam atitinkamai reikia nustatyti: 
+mode='simple', mode='zpt' ar mode='xtm'.
+* simple - tai pirmoji MedusWiki stadija, kuri gauta modifikavus [http://infomesh.net/2003/wypy/|WyPy].
+* zpt - pridėta galimybė naudoti ZPT templeitus (naudojama [http://www.owlfish.com/software/simpleTAL/|simpleTAL] bilioteka). 
+* xtm - pridėta galimybė naudoti ''temų žemėlapį''.
+----
+!! Klasės
+----
+'''Config'''
+Šios klasės pagalba tarpusavyje "bendrauja" kitų klasių objektai. Pavyzdžiui norint gauti duomenų saugyklą reikia iškviesti jos statinį metodą: 
+ Config.get('DataStore')
+Programos inicializavimo metu į šią klasę turi būti patalpinti atitinkami objektai. pvz:
+ Config.add('DataStore', SimpleDataStore())
+----
+'''SimplePageFormatter'''
+Ši klasė yra atsakynga už tai kaip bus atvaizduotas visas web puslapis. Metodas ''getpage'', pasinaudojęs inicializavimo metu gautais objektais, priklausomai nuo gautos užduoties (job), gražins atvaizdavimui paruoštą HTML dokumentą (kaip teksto eilutę).
+* '''ZPTPageFormatter''' - išvestinė iš SimplePageFormatter klasė. Perrašo metodą ''getpage''. Jis priklausomai nuo gautos užduoties (job), iškvies atitinkamo pavadimo metodą ''_context_job''. Šiuose metoduose Context objektas turi būti užpildytas duomenimis kuriuos norima paduoti į atitinkamą templeitą. Templeito failas turi būti padetas direktorijoje:
+           templates/<mode>/<job>.zpt
+** '''XTMPageFormatter''' - išvestinė iš ZPTPageFormatter klasė. Perrašo kaikuriuos ZPTPageFormatter klasės ''_context_'' metodus tam, kad į ''context'' objektą įdėti duomenis gautus iš XTM temų žemėlapio.
+----
+'''WikiFormatter''' 
+- ši klasė atsakynga už tai, kaip bus apdorotas wiki failo tekstas, t.y. wiki formatavimą ji turi pakeisti HTML'u, sukurti nuorodas į sistemoje egzistuojančius CamleCase užrašytus wiki puslapius. 
+----
+'''SimpleDataStore'''
+- klasė leidžianti duomenų saugojimui naudoti failų sistemą.
+----
+'''SimpleFormProcessor'''
+- klasė skirta duomenų, gautų iš HTML formų, apdorojimui. Kiekviena HTML forma privalo turėti paslėpta lauką:
+ <input type="hidden" name="form" value="myform">
+Priklausomai nuo gautos ''form'' reikšmės, bus iškviestas metodas ''_form_myform'', kuriame turi būti atliktas formos duomenų apdorojimas.
+* '''XTMFormProcessor''' - išvestinė iš SimpleFormProcessor klasė. Perrašo kaikuriuos SimpleFormProcessor klasės ''_form_'' metodus tam, kad apdoroti duomenis kurie turi pateki į temų žemėlapį (ar turi būti iš jo pašalinti).
+----
+'''xtm.Handler'''
+- klasė skirta darbui su ''XTM temų žemėlapiu''.
+----
+!! Testai
+Modulis ''xtm'' parašytas naudojant TDD (Test Driven Development). Testavimui naudojamas ne standartis python ''unittest'', bet "[http://codespeak.net/svn/user/hpk/talks/std-talk.txt|a complementary second standard library]" testavimo karkasas ''std.utest''. Kodėl? Jei trumpai tai jis labai paprastas ir patogus. Atsisiųsti jį galite naudodami [http://subversion.tigris.org/|Subversion]:
+ svn co http://codespeak.net/svn/std/trunk/src/std 

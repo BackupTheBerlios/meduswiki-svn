@@ -1,0 +1,94 @@
+Dabar pakalbėsime kaip naudotis svarbiausia MedusWiki ypatybe - sąryšiais tarp Wiki puslapių. MedusWiki sistemoje kiekvieną wiki puslapį atstovauja ''tema'' (pic. 0). ''Temos'' vardas yra lygus Wiki puslapio vardui. Todėl toliau Wiki puslapiai šiame tekste bus vadinami ''temomis'' (kartais puslapiais).
+
+{data/images/association0.png| topic and wiki page} 
+pic. 0 
+
+Taigi medus leidžia kurti tipizuotus sąryšius(roles) tarp temų. Sąryšio tipai - taip pat yra temos. Puslapio turimi sąryšiai rodomi viršutiniame dešiniajame kampe:
+
+{data/images/association1.png|puslapio saryšiai} 
+pic. 1 
+
+Pilka spalva nuspalvintas - sąryšio tipas, melyna - kitas puslapis, kuris 
+su turimu puslapiu yra susietas šiuo ryšiu.
+----
+!! Naujo sąryšio kūrimas
+Sąryšius galima kurti tik jau sukurtam Wiki Puslapiui. T.y. Jeigu jūs atsidarysite visiškai nauja Wiki puslapį - jo "Edit" lange nebus sąryšio kūrimo formos, kadangi dar nebus sukurta naują puslapį atstovaujanti tema. Taigi pradžioje reikia jį išsaugoti kaip naują ir tada pakartotinai atlikti redagavimą "Edit". Po teksto redagavimo forma atsiras sąryšių kūrimo forma: 
+ 
+{data/images/association2.png|naujo saryšio kūrimas} 
+pic. 2 
+ 
+Pavyzdyje pic. 2. Papaudus "Add" mygtuką, bus sukurtas naujas sąryšis. Kuris Wiki puslapyje MedusAssociationsLT atrodys sekančiai:
+
+{data/images/association3.png|naujas sąryšis}
+pic. 3 
+
+Tačiau sąryšis bus sukurtas ir "MedusDesign" puslapyje, tačiau jo tipas bus ''PreviousPage'':
+
+{data/images/association4.png|naujas sąryšis priešingai}
+pic. 4 
+
+!!! Sąryšių šalinimas
+Norint pašalinti sąryšius, atsidarykite puslapio redagavimo langą "Edit":
+
+{data/images/association5.png|sąryšių šalinimas}
+
+Pažymėkite sąryšius, kurių norite atsikratyti ir spauskite "Delete Selected". Po to sąryšis bus pašalintas iš abiejų sąryšyje dalyvaujančių puslapių. 
+----
+!! Kaip sukurti naujus sąryšių tipus?
+Saryšio tipai, taip pat yra Wiki puslapiai (temos). Kad suprasti kuo jie skiriasi nuo paprastų Wiki puslapių jums reiks susipažinti su MedusWiki sisteminėmis temomis.
+
+!!! Sisteminės MedusWiki temos
+Į sistemą integruotos penkios MedusWiki temos:
+* ''role''
+* ''type'' 
+* ''typeOf'' 
+* ''oppositeRole''
+* ''relatedTo''
+
+''type'' - yra tema-sąryšis nusakantis, temos tipą.
+Pvz:. ''MedusWiki'' - ''type'' - ''WikiSystem''
+
+''role'' - yra tema, su kuriuo susiejus kitą temą ''type'' sąryšiu, ši tema taps galimu sąryšio tipu.
+Pvz:. ''NextPage'' - ''type'' - ''role'' 
+
+''oppositeRole'' - yra sąryšis skirtas pažymėti, kad sąryšis turi priešingą (atvirkštinį) sau sąryšį.
+Pvz:. ''type'' - ''oppositeRole'' - ''typeOf'', ''NexPage'' - ''oppositeRole'' - ''PreviousPage''
+
+''typeOf'' - yra atvirkštinis ''type'' sąryšis ir nusako, kad ši tema yra kitos temos kategorija (tipas).
+Pvz:. ''WikiSystem'' - ''typeOf'' - ''MedusWiki''
+
+''relatedTo'' - nusako kad dvi temos, kažkaip susijusios. Dažnai objektai būna susiję, bet neįšeina įvardinti, kaip tiksliai jie susiję. Tokiu atveju naudojama ''relatedTo''
+Pvz:. ''ThisInformation'' - ''relatedTo'' - ''ThatInformation''
+
+!!! Naujo sąryšio tipo kūrimo pavyzdys
+Tarkime, kad mumų sistemos puslapiuose aprašomi kažkokių darbų autoriai, o taip pat darbai kuriuos jie atliko. Todėl mes norėtume, kad tokius puslapius būtų galima susieti ryšiu "AuthorOf" iš vienos pusės ir "AuthoredBy" iš kitos.
+
+1. Sukuriame naują temą (puslapį) "AuthoredBy".
+2. Susiejame "AuthoredBy" puslapį su ''role'' tema sąryšiu ''type'':
+
+{data/images/association6.png| association with role} 
+pic. 6 
+
+3. Sukuriame naują temą (puslapį) "AuthorOf".
+4. Susiejame "AuthorOf" puslapį su ''role'' tema sąryšiu ''type'' (kaip 2).
+5. Susiejame "AuthorOf" puslapį su ''AuthoredBy'' tema sąryšiu ''oppositeRole'':
+
+{data/images/association7.png| create oppsoteRole association} 
+pic. 7 
+
+Dabar jau galime susieti beti kuriuos du puslapius aprašančius autorių ir jo atliktą darbą šiuo sąryšiu. Pavyzdžiui:
+
+{data/images/association8.png| Edvardas AuthorOf MedusWiki} 
+pic. 8 
+
+Sukūrus aukščiau pateiktą sąryšį puslapyje EdvardasScerbavicius bus rodomas sekantis sąryšis:
+
+{data/images/association9.png| Edvardas associations} 
+pic. 9 
+
+Puslapyje MedusWiki bus rodomas sąryšis:
+
+{data/images/association10.png| Medus Wiki associations} 
+pic. 10 
+
+Bingo. Jus jau mokate kurti sąryšius. Jeigu turite kažkokių klausimų, juos galite užduoti puslapyje MedusQuestions.

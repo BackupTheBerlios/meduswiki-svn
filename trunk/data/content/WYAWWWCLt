@@ -1,0 +1,33 @@
+----
+!! Kam reikalingas dar vienas WikiWikiWeb klonas?
+MedusWiki leidžia tipizuoti ryšius tarp Wiki puslapių ir atlikti puslapių paieška naudojantis informacija apie ryšius. 
+----
+!!! Kam to reikia? 
+Visi gerai žinome, kas yra web nuorodos. Nuorodos susieja HTML dokumentą su kažkokiu kitu (dažniausiai irgi HTML) dokumentu. Nuoroda -  nusako ryšį vienpusiškai. Taigi nuoroda mums parodo, kad vienas dokumentas kažkaip susijęs su kitu (tačiau tas ''kitas'' apie sąryšį nieko "nežino"). Kaip tiksliai jie susije sužinoti galime tik iš teksto apibūdinančio nuorodą (taigi tam reikalingas žmogaus mąstymas, pastangos). HTML nuorodos neleidžia nusakyti sąryšio tipo. Pvz:. neįmanoma užrašyti, kad vienas puslapis nusako kategoriją (pvz:. "Processor"), o kitas puslapis aprašo objektą (pvz:. "Intel Pentium MMX 133") ir šie puslapiai susiję sąryšiu (kategorija-egzempliorius). To pasekoje tampa sunku kurti lankščią navigaciją - sunku rasti sistemoje turimus duomenis. 
+----
+!! Kaip įprastai sprendžiama tokia problema:
+'''1.''' Kategorijas nusakančiame puslapyje įdedamos nuorodos į jai priklausančius objektus. Objektus aprašančiuose puslapiuose įdedama nuorodą į Kategoriją kuriai jie priklauso.
+'''Trūkumai''': 
+* Jei tai atlieka žmogus, tai šie žingsniai reikalauja nemažai pastangų;
+* nuorodos tampa dokumento dalimi; (hardcoded)
+* pašalinus objektą, didelė tikimybė, kad kategorijos puslapyje bus pamiršta pašalinti nuorodas į jau neegzistuojančius objektus;
+* neįmanoma nusakyti sąryšio tipo ir atlikti paieškos;
+* nepadeda pagerinti paieškos.
+
+'''2.''' Informaciją apie tokius sąryšius laikyti Reliacinėje duomenų bazėje ir dinamiškai generuoti/naikinti nuorodas tarp puslapių.
+'''Trūkumai''':
+* Sistema tampa priklausoma nuo duomenų bazės;
+* informacija apie sąryšius (metaduomenys) tampa "užrakinta" duomenų bazėje ir kitoms programoms taps sunku (ar net neįmanoma) ja  pasinaudoti. (pvz:. trečios šalies paieškos sistema negalės atlikti paiešką su apribojimu, kad objektas turi priklausyti konkrečiai kategorijai)    
+----
+!!! MedusWiki siūlo kitokį sprendimą šiai problemai.
+3. Informaciją apie objektus (puslapius ar kitą) ir sąryšius tarp jų laikyti XTM temų žemėlapyje ir juo naudojantis dinamiškai generuoti/naikinti nuorodas tarp puslapių.
+'''Privalumai''':
+* Sąryšius galima tipizuoti;
+* nurodos tampa dvipusės (lankstesnė navigacija);
+* galima dalinai automatizuoti HTML nuorodų; (sukurimą/pakeitimą/šąlinimą). Išvengti "dead links" atsiradimo;
+* paprasta kurti naujus ryšiu tipus.
+* paprasta atlikti paieška naudojant informaciją apie sąryšius (metaduomenis).
+* kitos programos galės nesunkiai išgauti informaciją apie sąryšius iš XTM temų žemėlapio (pasinaudojant jau egzistuojančiomis XTM/XML priemonėmis ar sukuriant naujas). 
+
+'''Trūkumai''': 
+* Šiuo metu ''temų žemėlapiai'' nėra labai populiarūs. 

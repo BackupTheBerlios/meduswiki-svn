@@ -1,0 +1,28 @@
+----
+!! How to create new wiki page?
+Open page with desirable wiki name in your browser:
+
+{data/images/content1.png|create new wiki page} pic. 1
+
+Name could consist of ASCII characters and digits. It's recommended to use CamelCase. MedusWiki will replace CamelCase words in text with links.
+
+After launching url presented in (pic. 1) you will get page that shows: "Topic has no content". Press "Edit" link to create content.
+
+{data/images/content2.png|edit new wiki page} pic. 2
+
+Now you have form, there you could enter text. Edit SandBox to get more information about possible syntax.
+
+{data/images/content3.png|add new content} pic. 3
+
+Press "Save" then you have finished. 
+
+{data/images/content4.png|new content presentation} pic. 4
+
+Bingo. You have created new page! You can modify text by pressing "Edit" again. Press "Print" to prepare text for printing.
+----
+!! Deleteing wiki page
+All pages (except: role, type, typeOf, oppositeRole, relatedTo) could be deleted. Press "Delete WikiPage" button in Edit form and page will be destroyed! 
+
+{data/images/content5.png|delete wiki page} pic. 5
+
+After deleteing wiki page, also all of its associations that do not have existing members will be removed. Read MedusAssociationsEN to get more information about associations.

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title tal:content="title">WikiName</title>
+      <link rel="stylesheet" tal:attributes="href cfg/css" type="text/css" title="vosvos" />
+   </head>
+   <body>
+              <h1 tal:content="title">title</h1>
+              <p tal:replace="structure content">Content</p>
+              <b tal:condition="not:content">Topic has no content</b>
+
+  <table width="99%"><tr><td align="right"><a tal:attributes="href cfg/link">
+  <img tal:attributes="src cfg/logo" border="0" alt="logo" />
+  </a>
+       <b style="color:#4D5889" tal:content="cfg/version">0.0</b>
+  </td></tr></table>
+
+   </body>
+</html>

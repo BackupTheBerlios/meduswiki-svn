@@ -1,0 +1,28 @@
+----
+!! Kaip sukurti naują Wiki puslapį?
+Naršyklėje atsidarykite puslapį su norimu naujo puslapio pavadinimu:
+
+{data/images/content1.png|create new wiki page} pic. 1
+
+Pavadinimas gali būti sudarytas tik iš ASCII simbolių ir skaičių. Rekomenduojama naudoti CamelCase. Tokiu atveju MedusWiki galės automatiškai sukurti nurodas į šiuos puslapius, jei jų pavadinimai pasitakys Wiki puslapio tekste.
+
+Atsidarius pic.1 pateikta nuoroda, (jei toks puslapis dar neegzistuoja) pamatysite užrašą: "Topic has no content". Norint sukurti puslapio turinį spauskite "Edit".
+
+{data/images/content2.png|edit new wiki page} pic. 2
+
+Dabar jūs turite forma, kurioje galite įvesti norimą tekstą. Redaguokite SandBox, kad susipažinti su teksto formatavimo taisyklėmis.
+
+{data/images/content3.png|add new content} pic. 3
+
+Įvedus norimą tekstą ir jį atredagavus spauskite "Save". 
+
+{data/images/content4.png|new content presentation} pic. 4
+
+Bingo. Jūs jau sukūrėte naują puslapį ir žinote 49% visko ko jums reikia žinoti, kad efektyviai naudotis MedusWiki sistema. Norint pakartotinai redaguoti teksta vėl spauskite Edit. O jei norite tekstą paruošti spausdinimui spauskite "Print".
+----
+!! Puslapio šalinimas
+Visus puslapius išskyrus (role, type, typeOf, oppositeRole, relatedTo) galima pašalinti. Edit lange tam skirtas "Delete WikiPage" mygtukas:
+
+{data/images/content5.png|delete wiki page} pic. 5
+
+Šalinant puslapį bus pašalinti ir tie jo turimi sąryšiai, kurių dalyviai jau taip pat yra pašalinti. Norint apie sąryšius sužinoti daugiau skaitykite MedusAssociationsLT 

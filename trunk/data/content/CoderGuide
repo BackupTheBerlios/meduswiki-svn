@@ -1,0 +1,61 @@
+----
+!! Code directory structure
+ lib/medus/
+           cfg.py
+           content/
+                  WikiFormatter.py
+           data/
+                  SimpleDataStore.py
+           form/
+                  SimpleFormProcessor.py
+                  XTMFormProcessor.py
+           page/
+                  SimplePageFormatter.py
+                  ZPTPageFormatter.py
+                  XTMPageFormatter.py
+ lib/simpletal/
+ lib/xtm/
+ index.py
+
+----
+!! Class diagram
+[http://192.168.0.1/~kosmos/medus/data/images/class.png|Class diagram and classes that are used in different modes]
+----
+!! Modes
+You can change modes by modifying ''index.py'' file. Appropriate name must be set: mode='simple', mode='zpt' or mode='xtm'.
+* simple - this is initial stage of MedusWiki, that was built by modifying [http://infomesh.net/2003/wypy/|WyPy].
+* zpt - ZPT templates are used to produce HTML output ([http://www.owlfish.com/software/simpleTAL/|simpleTAL] library is used). 
+* xtm - ''XTM topic maps'' are used to associate wiki pages.
+----
+!! Classes
+----
+'''Config'''
+This class is used to interconnect objects of other classes. For example, if you want to get datastore object, ''Config'' static method ''get'' must be called: 
+ Config.get('DataStore')
+Objects must be placed into this class during program initialization:
+ Config.add('DataStore', SimpleDataStore())
+----
+'''SimplePageFormatter'''
+This class is used to structure web page layout. Method ''getpage'' returns HTML document as a string (depending on the "job" it has got).
+* '''ZPTPageFormatter''' - this class extends SimplePageFormatter. Method ''getpage'' is overwritten and it calls method ''_context_job'' depending on the "job" it has got. Context object must be filled with data objects that will be placed into appropriate templates. Template file is located at:
+           templates/<mode>/<job>.zpt
+** '''XTMPageFormatter''' - this class extends ZPTPageFormatter. Some of "_context_" methods ar overwritten and data from ''XTM topic map'' is placed into templates context.
+----
+'''WikiFormatter''' 
+- This class is used to convert wiki text formatting into HTML.
+----
+'''SimpleDataStore'''
+- This class is used to store and to retrieve data from file system.
+----
+'''SimpleFormProcessor'''
+- This class is used to process data from HTML forms. Every form must have input field named "form" and different value:
+ <input type="hidden" name="form" value="myform">
+Depending on "form" value, method with the name "_form_myform" will be called. Code that process form data must be placed there.
+* '''XTMFormProcessor''' - this class extends SimpleFormProcessor. Some of "_form_" methods ar overwritten to process data that must be placed(or deleted) into the ''topic map''.
+----
+'''xtm.Handler'''
+- This class is used to communicate with ''XTM topic map''.
+----
+!! Tests
+Package ''xtm'' was written using TDD (Test Driven Development). Not standart python ''unittest'' was used, but "[http://codespeak.net/svn/user/hpk/talks/std-talk.txt|a complementary second standard library]" testing framework ''std.utest''. Why? It was because it's very simple and quite powerfull. You must use [http://subversion.tigris.org/|Subversion] to download it:
+ svn co http://codespeak.net/svn/std/trunk/src/std 

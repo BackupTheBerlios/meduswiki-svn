@@ -1,0 +1,24 @@
+MedusWiki yra nepriklausoma nuo Operacinės Sistemos. Viskas ko jums reikia tai (Python >= 2.2) interpretatoriaus. Jeigu jūsų sistemoje dar nėra Python interpretatoriaus - galite jį atsisiųsti iš http://www.python.org .
+
+Visoms Operacinėms sistemos skirtas vienas MedusWiki archyvas. Kurį galite atsisiųsti iš http://developer.berlios.de/projects/meduswiki/
+----
+!!! Instrukcijos turintiems Web Serverį 
+MedusWiki yra CGI programa, todėl ją galite vykdyti ant bet kurio Web Serverio, kuris leidžia vykdyti python cgi skriptus. Prieš vykdant skirptą nustatykite skaitymo/rašymo teisę data direktorijai (unix: chmod -R 777 data). Rekomenduojama /data direktoriją perkelti į disko vietą, prie kurios neįšeina prieiti per web'ą. Naujas kelias turi būti užrašytas ''index.py'' faile:
+ cfg['data_path'] = '/path/to/data'
+Nustatykite vykdymo teisę vykdomajam failui (unix: chmod 755 index.py).
+
+Jeigų jūsų Web Serveryje CGI skirptai privalo turėti specifinį pratesimą. Pervadinkite ''index.py'' į ''index.cgi'' ar kt.) 
+----
+!!! Instrukcijos neturintiems Web Serverio 
+MedusWiki archyve patalpintas paprastas python httpcgi serveris, kurio pilnai užtenka naudotis MedusWiki sistema.
+----
+'''Windows''':
+* Pasirinktoje direktorijoje išarchyvuokite atsisiųstą meduswiki archyvą.
+* Paleiskite httpcgi serverį: "python httpcgi.py"
+* Savo naršyklėje įveskite adresą "http://localhost:8000/index.py"
+----
+'''Linux''':
+* Pasirinktoje direktorijoje išarchyvuokite atsisiųstą meduswiki archyvą.
+* Nustatykite skaitymo/rašymo teisę data direktorijai (chmod -R 777 data)
+* Paleiskite httpcgi serverį: "python httpcgi.py &"
+* Savo naršyklėje įveskite adresą "http://localhost:8000/index.py"

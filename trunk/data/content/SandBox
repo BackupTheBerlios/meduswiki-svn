@@ -1,0 +1,28 @@
+----
+! heading1
+!! heading2
+!!! heading2
+* image: {http://meduswiki.berlios.de/medus.png|image}
+* [http://my.new.com|http link]
+* [ftp://my.new.com|ftp link]
+* [mailto:edvardass@post.5ci.lt|my email, don't spam it]
+* [?HomePage|Name for local page]
+* image link: [http://image.link/|{http://meduswiki.berlios.de/medus.png|image}]
+''italic text''
+'''bold text'''
+
+"CamelCase": HomePage
+
+Lists:
+* top
+** middle1
+** middle2
+*** bottom
+
+# top1
+# top2
+## middle
+### bottom
+  Space at the begining of the line - monospaced text
+----
+http://just.url.lt

@@ -1,0 +1,94 @@
+Now we will talk about main MedusWiki feature - associations between wiki pages. Every wiki page in MedusWiki is represented by ''topic'' (pic. 0). ''Topic'' name(id) and wiki page name are equal. 
+
+{data/images/association0.png|topic and wiki page} 
+pic. 0 
+
+You could create meaningfull associations between ''topics''. Topics plays roles in associations. ''Roles'' also are ''topics''. You could see page associations in top right corner:
+
+{data/images/association1.png|page associations} 
+pic. 1 
+
+Roles are grey colored, other members of this assocations - blue.
+----
+!! Creating new association
+Associations could be created only after wiki page is saved. You could not create association to absolutely new("Save" has never been pressed) page, because ''topic'' that represents wiki page doesn't exists at this moment. After you pressed "Save", open "Edit" form again and you will get
+Associations form below text editing form: 
+ 
+{data/images/association2.png|naujo saryšio kūrimas} 
+pic. 2 
+ 
+After pressing "Add" in example pic. 2, new association will be created in MedusAssociationsLT page: 
+
+{data/images/association3.png|naujas sąryšis}
+pic. 3 
+
+Also new association will be created in "MedusDesign" page. Its role will be opposite to the specified in association form:
+
+{data/images/association4.png|naujas sąryšis priešingai}
+pic. 4 
+----
+!! Removing associations
+If you want to remove association, open page "Edit" window:
+
+{data/images/association5.png|sąryšių šalinimas}
+
+Check associations, you want to delete and press "Delete Selected". Those associations will be removed from both topics that participiate in association.
+----
+!! How to create new association ''roles''?
+Roles also are topics. First of all we'll have to talk about MedusWiki built in topics.
+
+!!! Builtin MedusWiki topics
+There are five builtin topics:
+* ''role''
+* ''type'' 
+* ''typeOf'' 
+* ''oppositeRole''
+* ''relatedTo''
+
+''type'' - role-topic that is used to define type of topic.
+example:. ''MedusWiki'' - ''type'' - ''WikiSystem''
+
+''role'' - topic - then some other topic is associated this this one and association role is ''type'' - it becomes possible type of role.
+example:. ''NextPage'' - ''type'' - ''role'' 
+
+''oppositeRole'' - role-topic that is used to define opposite role of current role.
+example:. ''type'' - ''oppositeRole'' - ''typeOf'', ''NexPage'' - ''oppositeRole'' - ''PreviousPage''
+
+''typeOf'' - role-topic that is opposite to role ''type''. It defines that this topic is categoty(type) for some other topic.
+example:. ''WikiSystem'' - ''typeOf'' - ''MedusWiki''
+
+''relatedTo'' - role-topic that is used to define that two topics are somehow related. Sometimes it's hard to define type of association. In this case - this role must be used.
+example:. ''ThisInformation'' - ''relatedTo'' - ''ThatInformation''
+----
+!! Example how to create new role
+Suppose we want to create associations between pages that describes authors and works done by those authors. So we want to associate those pages with association "AuthorOf - AuthoredBy".
+
+1. Create new topic (page) "AuthoredBy".
+2. Associate "AuthoredBy" page with topic ''role'' by role ''type'':
+
+{data/images/association6.png| association with role} 
+pic. 6 
+
+3. Create new topic (page) "AuthorOf".
+4. Associate "AuthorOf" page with topic ''role'' by role ''type'' (look at step 2):
+5. Associate page "AuthorOf" with page ''AuthoredBy'' by role ''oppositeRole'':
+
+{data/images/association7.png| create oppositeRole association} 
+pic. 7 
+
+Now we could associate any page that describes Author with page that describes his Work. Example:
+
+{data/images/association8.png| Edvardas AuthorOf MedusWiki} 
+pic. 8 
+
+After this, following association will be shown in page EdvardasScerbavicius:
+
+{data/images/association9.png| Edvardas associations} 
+pic. 9 
+
+And following association will be shown in page MedusWiki:
+
+{data/images/association10.png| Medus Wiki associations} 
+pic. 10 
+
+Bingo. Now you know how to create associations. If you have any questions please ask it at MedusQuestions page.

@@ -1,0 +1,144 @@
+The idea to use Topic Maps for content management i have taken from
+Lars Marius Garshol article [http://www.ontopia.net/topicmaps/materials/itms.html|Topic maps in content management]. 
+
+All topics and associations are stored in one file:
+ data/topicmap.xml
+The powers of Topic Maps are used at the very minimum and maybe not at the very best way. I was trying not to lose the best characteristics of Wiki systems (everything must be simple and quick). This had an influence on the way Topic Maps ar used. Maybe in the future i'll choose to use other type of metadata storage and Topic Maps will be just one type of metadata export format. 
+
+Topic attribute ''id'' is used to connect ''topic'' with wiki page file.
+ <topic id="WikiName"/>
+File with the same name exists in the file storage. If it was not Wiki system, but CMS, I think it will be better to use ''xtm'' tag ''occurrence'':
+ <topic id="randomId">
+    <occurrence>
+        <resourceRef xlink:href="file:///path/WikiName"/>
+    </occurrence>
+ </topic>
+In this case, multiple types of data storage could be used and multiple types of protocols could be used to reach content objects.
+
+Example of association between two topics:
+ <association id="110">
+    <member>
+        <roleSpec><topicRef xlink:href="#PartOf"/></roleSpec>
+        <topicRef xlink:href="#MedusInstallLT"/>
+    </member>
+    <member>
+        <roleSpec><topicRef xlink:href="#ConsistsOf"/></roleSpec>
+        <topicRef xlink:href="#MedusGuide"/>
+    </member>
+ </association>
+In case then one ''topic'' is instance of other ''topic'' association ''type-typeOf'' is created:
+ <association id="111">
+    <member>
+        <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+        <topicRef xlink:href="#AuthorOf"/>
+    </member>
+    <member>
+        <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+        <topicRef xlink:href="#role"/>
+    </member>
+ </association>
+It seems that better way to do this is to use ''xtm'' ''instanceOf'' tag:
+ <topic id="AuthorOf">
+    <instanceOf><topicRef xlink:href="#role"/></instanceOf>
+ </topic>
+Why not? The main reason is the desire to make system there wiki page is discribed by its associations only. This leads to that unified inteface could be used to work with objects metadata (everything could be done, by just creating new association). 
+
+MedusWiki ''topicmap.xml'' comes with few builtin topics and associations. The only difference between those and user created topics and associations is that all these topics and associations are marked as ''xtm instanceOf'' of topic ''builtIn''.
+ <topicMap>
+   <topic id="builtIn">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="role">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="type">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="typeOf">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="oppositeRole">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <topic id="relatedTo">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+   </topic>
+
+   <association id="1">
+       <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#type"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#typeOf"/>
+       </member>
+   </association>
+
+   <association id="2">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#type"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="3">
+       <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+       <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#typeOf"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="4">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+
+   <association id="5">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#oppositeRole"/></roleSpec>
+           <topicRef xlink:href="#oppositeRole"/>
+       </member>
+   </association>
+
+   <association id="6">
+      <instanceOf><topicRef xlink:href="#builtIn"/></instanceOf>
+      <member>
+           <roleSpec><topicRef xlink:href="#type"/></roleSpec>
+           <topicRef xlink:href="#relatedTo"/>
+       </member>
+       <member>
+           <roleSpec><topicRef xlink:href="#typeOf"/></roleSpec>
+           <topicRef xlink:href="#role"/>
+       </member>
+   </association>
+ </topicMap>
+By making use of these topics and associations, user could expand the system (create new associations and roles).

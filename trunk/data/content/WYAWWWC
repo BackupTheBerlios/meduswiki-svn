@@ -1,0 +1,36 @@
+----
+!! Why yet another WikiWikiWeb clone? 
+MedusWiki allows to create meaningful associations between any two of Wiki pages and filter pages according to the associations they take part in. 
+----
+!!! Why is it important? 
+We all know what is HTML links. Links connect HTML document with some other (usually also HTML) document and this is one-side connection. The other document doesn't know anything about this connection. Also we could not specify type of this connection. For example, we can't specify, that page about ''Intel Pentium MMX133'' is in association ''instance-category'' with page what describes category ''Processor''. As a result of this, it becomes hard to create effective navigation and search systems.       
+----
+!!! Usual solutions
+'''1.''' Link to the ''instance'' page is inserted into page that describes ''category'' and opposite link to the ''category'' page is inserted into ''instance'' page.
+
+'''Shortcomings''':
+* It demands lot of human work;
+* links are hardcoded into document; 
+* it's likely that it will be forgotten to remove "dead links" after one of these pages will be removed/renamed;
+* it's impossible to specify type of the association;
+* searchability isn't improved.
+
+'''2.''' Store information about associations between pages in RDBMS and generate/remove links dynamically. It has some benefits, but it also
+has some drawbacks:
+* System bocomes denependent on database. 
+* information about associations becomes locked in database and other programs wouldn't be able to use it. (for example third party search engine wouldn't be able to make search with restriction that search object must belong to specific category). (metadata export could help here)
+----
+!!! MedusWiki Way
+Store information about pages and associations between pages in ''topic map'' (XTM). Generate/remove links dynamically.  
+
+'''Benefits''':
+* Meaningfull associations;
+* two-side connections (flexible navigation);
+* automatic creation of opposite role in association;
+* simple creation/removal of associations-links between pages;
+* simple creation of new association types;
+* use of information about associations(metadata) for searching;
+* other systems could use existing XTM/XML tools to extract information about associations from ''topic map'' and use it in any desirable way;
+'''Shortcomings''':
+* ''Topic maps'' are not buzzword compliant at this moment. 
+''2004-10-21 22:58''

@@ -1,0 +1,1 @@
+MedusWiki is a Python Wiki engine intended to be used as a personal knowledge management system. It uses Topic Maps (XTM) to store metadata, meaningful associations could be created between wiki pages. Zope Page Templates (ZPT) are used to produce HTML
