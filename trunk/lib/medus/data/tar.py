@@ -90,6 +90,14 @@ def tar(entries):
     ra('\0'*1024)
     return ''.join(r)
 
+# by vosvos
+def tarit(entries):
+    r=[]
+    for entry in entries:
+        r.append(str(entry))
+    r.append('\0'*1024)
+    return ''.join(r)
+
 def tgz(entries):
     c=zlib.compressobj()
     compress=c.compress
