@@ -17,6 +17,7 @@ class SimpleDataStore:
            'content_path' must be added to Config before, instanciating object of this class
         """
         self.content_path = Config.get('content_path')
+        self.history = Config.get('History')
 
     def exists(self, id):
         """Return True, if (id) file exists"""
@@ -34,13 +35,19 @@ class SimpleDataStore:
 
     def write(self, id, content):
         """(id, content) write content to id:file"""
+
+        if self.exists(id): # backup old version
+            self.history.save(id)
+        
         outfile = open(os.path.join(self.content_path, id), "w")
         outfile.write(content)
         outfile.close()
 
     def remove(self, id):
         """Delete file(id) from data storage"""
-        os.remove(os.path.join(self.content_path, id))
+        if self.exists(id):
+            self.history.save(id) # backup removed version
+            os.remove(os.path.join(self.content_path, id))
 
     def listdata(self):
         """Return list of wiki files(names)"""

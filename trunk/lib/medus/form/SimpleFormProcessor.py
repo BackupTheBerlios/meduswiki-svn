@@ -32,9 +32,5 @@ class SimpleFormProcessor:
 
     def _form_delete(self, fields):
         """Remove given wikifile"""
-        wn = fields['wn']
-        file_exists = self.datastore.exists(wn)
-
-        if file_exists:
-            self.datastore.remove(wn)
+        self.datastore.remove(fields['wn'])
 

@@ -21,6 +21,7 @@ http://meduswiki.berlios.de/
 import os, os.path, cgi, traceback, sys
 sys.path.append('lib')
 from medus.data.SimpleDataStore import SimpleDataStore
+from medus.data.History import History
 from medus.content.WikiFormatter import WikiFormatter
 from medus.cfg import Config
 
@@ -62,7 +63,8 @@ def main(fields):
         else:
             fields['wn'] = 'HomePage'
 
-        # create data store and content formatter
+        # create data store, history and content formatter
+        Config.add('History', History(cfg['content_path']))
         Config.add('DataStore', SimpleDataStore())
         Config.add('ContentFormatter', WikiFormatter())
 
